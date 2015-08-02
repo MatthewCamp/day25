@@ -1,0 +1,31 @@
+*{
+	margin: 0px;
+	padding: 0px;	
+	color:#613F23;
+}
+body{
+	background-color: #FBFAF8;
+}
+/*控制圆角的样式*/
+.circleborder
+{
+	border-radius:3px;
+	-webkit-border-radius:3px;
+	-moz-border-radius:3px; 
+}
+.changecolor
+{
+	text-decoration: none;
+}
+.changecolor:HOVER
+{
+	color:#FA7A20;
+}
+.shadow
+{
+	-moz-box-shadow: 6px 6px 10px #BCBAB9;
+	-webkit-box-shadow: 6px 6px 10px #BCBAB9;
+	box-shadow: 6px 6px 6px #BCBAB9;
+}
+
+/* onmouseover="this.style.cursor='hand'" */

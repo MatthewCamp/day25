@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0"
+    xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+ <!-- 给监听器配置资源文件 -->
+  <context-param>
+  	<param-name>pageLocationConfig</param-name>
+  	<param-value>views.properties</param-value>
+  </context-param>
+<!-- 过滤器配置 -->
+  <!-- 普通用户登陆过滤 -->
+  <filter>
+  	<filter-name>loginfilter</filter-name>
+  	<filter-class>com.kdyzm.filter.LoginFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>loginfilter</filter-name>
+  	<url-pattern>/secure/*</url-pattern><!-- 对全部的安全资源进行登录过滤 -->
+  </filter-mapping>
+  <!-- 管理员登陆过滤 -->
+  <filter>
+  	<filter-name>AdminLoginFilter</filter-name>
+  	<filter-class>com.kdyzm.filter.AdminLoginFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>AdminLoginFilter</filter-name>
+  	<url-pattern>/admin/secure/*</url-pattern><!-- 对管理员下的安全资源进行过滤 -->
+  </filter-mapping>
+  <!-- 权限认证过滤器，对于已经登陆但是想要访问超出权限范围的访问进行过滤 -->
+ <!--  <filter>
+  	<filter-name>AdminAuthFilter</filter-name>
+  	<filter-class>com.kdyzm.filter.AdminAuthFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>AdminAuthFilter</filter-name>
+  	<url-pattern>/admin/secure/*</url-pattern>
+  </filter-mapping> -->
+  
+<!-- Servlet配置 -->
+  <servlet>
+    <servlet-name>IndexServlet</servlet-name>
+    <servlet-class>com.kdyzm.index.IndexServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>BookServlet</servlet-name>
+  	<servlet-class>com.kdyzm.book.BookServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>BuyServlet</servlet-name>
+    <servlet-class>com.kdyzm.buy.BuyServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>OrderServlet</servlet-name>
+    <servlet-class>com.kdyzm.order.OrderServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>UserServlet</servlet-name>
+    <servlet-class>com.kdyzm.user.UserServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>CheckCode</servlet-name>
+    <servlet-class>com.kdyzm.utils.CheckCode</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>AdminServlet</servlet-name>
+    <servlet-class>com.kdyzm.admin.AdminServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>admincheckcode</servlet-name>
+  	<servlet-class>com.kdyzm.admin.CheckCode</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>RoleServlet</servlet-name>
+    <servlet-class>com.kdyzm.role.RoleServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>AddNewBookServlet</servlet-name>
+    <servlet-class>com.kdyzm.book.AddNewBookServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>BookManageServlet</servlet-name>
+    <servlet-class>com.kdyzm.book.BookManageServlet</servlet-class>
+  </servlet>
+
+
+
+
+
+  <servlet-mapping>
+    <servlet-name>IndexServlet</servlet-name>
+    <url-pattern>/indexServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>BookServlet</servlet-name>
+    <url-pattern>/bookServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>BuyServlet</servlet-name>
+    <url-pattern>/buyServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>OrderServlet</servlet-name>
+    <url-pattern>/secure/orderServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UserServlet</servlet-name>
+    <url-pattern>/userServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CheckCode</servlet-name>
+    <url-pattern>/checkCode</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AdminServlet</servlet-name>
+    <url-pattern>/admin/adminServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>admincheckcode</servlet-name>
+  	<url-pattern>/admincheckcode</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>RoleServlet</servlet-name>
+    <url-pattern>/admin/secure/roleManageServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddNewBookServlet</servlet-name>
+    <url-pattern>/admin/secure/addNewBookServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>BookManageServlet</servlet-name>
+    <url-pattern>/admin/secure/bookManageServlet</url-pattern>
+  </servlet-mapping>
+<!-- 监听器配置 -->
+<listener>
+	<listener-class>com.kdyzm.listener.ServletContextListenerForPageUtils</listener-class>
+</listener>
+<listener>
+	<listener-class>com.kdyzm.listener.HttpSessionListenerForUser</listener-class>
+</listener>
+</web-app>
